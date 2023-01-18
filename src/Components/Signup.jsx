@@ -8,7 +8,9 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const [isSignedIn, setIsSignedIn] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState([]);  
+  const [fullname, setFullname]= useState("");
+  const [phonenumber, setPhonenumber]= useState ("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordLengthError, setPasswordLengthError] = useState("");
@@ -36,10 +38,10 @@ const Signup = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: e.target.name.value,
-        phonenumber: e.target.number.value,
-        password: e.target.password.value,
-        confirmpassword: e.target.confirmPassword.value,
+        fullname,
+        phonenumber,
+        password,
+        confirmPassword,
       }),
     })
       .then((response) => {
@@ -74,6 +76,8 @@ const Signup = () => {
             <label>Full name</label>
             <input
               type="name"
+              value={fullname}
+              onChange={(e) => setFullname(e.target.value)}
               name="name"
               className="form-control"
               placeholder="Enter name"
@@ -85,6 +89,8 @@ const Signup = () => {
             <label>Phone number</label>
             <input
               name="number"
+              value={phonenumber}
+              onChange={(e) => setPhonenumber(e.target.value)}
               type="number"
               className="form-control"
               placeholder="Enter phone number"
